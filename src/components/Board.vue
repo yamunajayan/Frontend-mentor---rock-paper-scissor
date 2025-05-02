@@ -1,8 +1,10 @@
 <script setup>
 import PaperIcon from "./PaperIcons.vue";
-import RockIcon from "./rockIcon.vue";
+import RockIcon from "./RockIcon.vue";
 import ScissorsIcon from "./ScissorsIcon.vue";
-import { ref } from "vue";
+import { ref, defineEmits, defineExpose } from "vue";
+
+const emit = defineEmits();
 
 const userSelection = ref(null);
 const houseSelection = ref(null);
@@ -14,6 +16,18 @@ const getRandomChoice = () => {
   return choices[randomIndex];
 };
 
+const resetGame = () => {
+  userSelection.value = null;
+  houseSelection.value = null;
+  showHousePick.value = false;
+  winner.value = null;
+  console.log("Board reset");
+};
+
+defineExpose({
+  resetGame,
+});
+
 const handleUserSelection = (choice) => {
   userSelection.value = choice;
   console.log("User chose:", choice);
@@ -23,14 +37,33 @@ const handleUserSelection = (choice) => {
     houseSelection.value = getRandomChoice();
     console.log("User chose:", houseSelection.value);
     showHousePick.value = true;
+    determineWinner();
   }, 1000); // 1 second delay
+
+  // 2 seconds delay
+};
+
+const determineWinner = () => {
+  if (userSelection.value === houseSelection.value) {
+    winner.value = "draw"; // No winner if it's a tie
+  } else if (
+    (userSelection.value === "rock" && houseSelection.value === "scissors") ||
+    (userSelection.value === "scissors" && houseSelection.value === "paper") ||
+    (userSelection.value === "paper" && houseSelection.value === "rock")
+  ) {
+    winner.value = "user"; // User wins
+  } else {
+    winner.value = "house"; // House wins
+  }
+
+  emit("updateWinner", winner.value); // Emit 'user' or 'house' to parent
 };
 </script>
 
 <template>
-  <article class="flex justify-center items-center w-full h-[282px]">
+  <article class="flex justify-center items-center w-full">
     <section
-      class="relative w-full flex justify-center items-center"
+      class="relative w-full flex justify-center items-center h-[282px]"
       v-if="userSelection === null"
     >
       <div class="absolute z-0 px-[73px]">
