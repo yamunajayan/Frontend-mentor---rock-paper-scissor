@@ -1,5 +1,27 @@
-# Vue 3 + TypeScript + Vite
+# 🪨📄✂️ Rock Paper Scissors Game
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A simple yet stylish Rock Paper Scissors game built with **Vue 3**, **TypeScript**, and **Tailwind CSS**. This app tracks scores, declares a winner, and offers a clean UI/UX with responsive interactivity.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+---
+
+## 🚀 Features
+
+- 🎮 Play Rock, Paper, Scissors against the computer
+- 🧠 Simple AI-based "house" opponent
+- 🔢 Dynamic score tracking
+- 🏆 Winner announcement section
+- 🔁 "Play Again" functionality to reset game
+- 📜 Toggleable game rules
+- 💨 Smooth and responsive UI with Tailwind CSS
+
+---
+
+## 🛠️ Built With
+
+- [Vue 3](https://vuejs.org/) — Composition API & `<script setup>`
+- [TypeScript](https://www.typescriptlang.org/) — for type-safe development
+- [Tailwind CSS](https://tailwindcss.com/) — utility-first CSS framework
+
+---
+
+## 📂 Project Structure
