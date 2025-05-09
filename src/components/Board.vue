@@ -37,7 +37,10 @@ const handleUserSelection = (choice) => {
     houseSelection.value = getRandomChoice();
     console.log("User chose:", houseSelection.value);
     showHousePick.value = true;
-    determineWinner();
+    // Delay the winner determination by 1 second
+    setTimeout(() => {
+      determineWinner();
+    }, 1000);
   }, 1000); // 1 second delay
 
   // 2 seconds delay
@@ -63,20 +66,22 @@ const determineWinner = () => {
 <template>
   <article class="flex justify-center items-center w-full">
     <section
-      class="relative w-full flex justify-center items-center h-[282px]"
+      class="relative w-full flex justify-center items-center h-[282px] md:h=[436px]"
       v-if="userSelection === null"
     >
       <div class="absolute z-0 px-[73px]">
         <img
           src="/bg-triangle.svg"
           alt="background triangle"
-          class="w-full h-[188px]"
+          class="w-full h-[188px] md:w-[254px] md:h-[288px]"
         />
       </div>
       <div
-        class="absolute h-[288px] w-full z-10 flex flex-col justify-between items-center"
+        class="absolute h-[288px] md:h-[430px] w-full z-10 flex flex-col justify-between items-center"
       >
-        <div class="flex justify-between items-center w-full max-w-sm">
+        <div
+          class="flex justify-between items-center w-full max-w-sm md:max-w-[476px]"
+        >
           <div @click="handleUserSelection('paper')" class="cursor-pointer">
             <PaperIcon />
           </div>
@@ -93,22 +98,27 @@ const determineWinner = () => {
     </section>
     <section
       v-else
-      class="flex justify-between items-center w-full max-w-sm h-[182px]"
+      :class="[
+        'flex justify-between items-center w-full h-[182px] md:h-[300px]',
+        winner ? 'md:max-w-[800px]' : 'md:max-w-[600px]',
+      ]"
     >
       <div class="flex flex-col justify-between items-center h-full">
+        <p class="hidden md:block">YOU PICKED</p>
         <PaperIcon v-if="userSelection === 'paper'" />
         <RockIcon v-else-if="userSelection === 'rock'" />
         <ScissorsIcon v-else-if="userSelection === 'scissors'" />
-        <p>YOU PICKED</p>
+        <p class="md:hidden">YOU PICKED</p>
       </div>
       <div class="flex flex-col justify-between items-center h-full">
+        <p class="hidden md:block">THE HOUSE PICKED</p>
         <PaperIcon v-if="showHousePick && houseSelection === 'paper'" />
         <RockIcon v-else-if="showHousePick && houseSelection === 'rock'" />
         <ScissorsIcon
           v-else-if="showHousePick && houseSelection === 'scissors'"
         />
         <div v-else class="w-[130px] h-[133px]"></div>
-        <p>THE HOUSE PICKED</p>
+        <p class="md:hidden">THE HOUSE PICKED</p>
       </div>
     </section>
   </article>

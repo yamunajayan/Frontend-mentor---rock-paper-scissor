@@ -36,7 +36,9 @@ const scoreRef = ref<number>(0);
     <ScoreBoard :score="scoreRef" />
     <Board @updateWinner="handleWinner" ref="boardRef" />
 
-    <div class="h-[131px] flex items-center justify-center w-full">
+    <div
+      class="h-[131px] flex items-center justify-center w-full md:absolute md:top-[430px]"
+    >
       <WinnerSection
         v-if="gameWinner"
         :gameWinner="gameWinner"
