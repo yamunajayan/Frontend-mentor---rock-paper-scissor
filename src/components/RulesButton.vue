@@ -21,10 +21,10 @@ const handleRuleClick = () => {
     class="z-20 fixed h-full w-full bg-black/50 flex items-center justify-center top-[-1px]"
   >
     <div
-      class="w-full h-full md:h-[415px] md:w-[415px] bg-white top-0 flex flex-col items-center justify-around"
+      class="w-full h-full md:h-[415px] md:w-[415px] bg-white top-0 flex flex-col items-center justify-around md:p-4"
     >
       <div
-        class="flex justify-center md:justify-between items-center w-full px-4 pt-4"
+        class="flex justify-center md:justify-between items-center w-full px-4"
       >
         <h1 class="text-[32px] font-bold text-[#3B4262]">RULES</h1>
         <button class="hidden md:block">
